@@ -1,18 +1,15 @@
 from pathlib import Path
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# We should put this KEY in an OS variable.
+# THIS NEVER SHOULD BEEN SEEN IN THE REPO OR ANYWHERE
 SECRET_KEY = '5bzh*gbu_5072a9c^gc@ie$52fqt7_+f-w2pht3cedm0ktn*la'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# Set to False
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -25,6 +22,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+
+    # Adding whitenoise for handling the static files
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -33,9 +32,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'weeklyChallenge.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -52,38 +49,37 @@ TEMPLATES = [
     },
 ]
 
+# If you any database you SHOULD put your 
+# DB name, password and user in OS variables
 WSGI_APPLICATION = 'weeklyChallenge.wsgi.application'
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
 ]
 
+# You can change
+# (OPTIONAL)
 LANGUAGE_CODE = 'es-mx'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
 STATIC_URL = '/Static/'
-STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'Static'),)
+
+# Set the dir where the staticfiles should go when 
+# running "collecstatic"
+STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
+
+# Set the compression of the files by WhiteNoise
+# (OPTIONAL)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
