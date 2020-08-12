@@ -1,5 +1,5 @@
 ---
     applications:
-     - name: django
+     - name: weeklyChallenge
        random-route: true
        memory: 128M
