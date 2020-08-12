@@ -1,5 +1,7 @@
----
-    applications:
-     - name: weeklyChallenge
-       random-route: true
-       memory: 128M
+# ---
+#     applications:
+#      - name: weeklyChallenge
+#        random-route: true
+#        memory: 128M
+ applications:
+  - name: weeklyChallenge 

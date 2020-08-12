@@ -1,0 +1,8 @@
+
+Apps/oneSampleApp/__pycache__/
+
+Apps/oneSampleApp/migrations/__pycache__/
+
+*.sqlite3
+
+weeklyChallenge/__pycache__/

@@ -1,3 +1,1 @@
-web: python manage.py migrate && weeklyChallenge.wsgi --log-file -
-python manage.py collectstatic --noinput
-
+web: python manage.py migrate && gunicorn weeklyChallenge.wsgi --log-file -
